@@ -24,4 +24,5 @@ public interface RentInfoService {
     void updateDebtors();
 
 
+    List<RentInfo> findAll();
 }
