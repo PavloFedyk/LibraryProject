@@ -1,8 +1,9 @@
-package com.library.DAO.Implementation;
+package com.library.dao.impl;
 
 import com.library.entity.RentStatus;
 import com.library.entity.User;
-import com.library.DAO.UserDAO;
+import com.library.dao.UserDAO;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -18,13 +19,10 @@ import static java.util.Optional.*;
 
 @Transactional
 @Repository
+@RequiredArgsConstructor
 public class UserDAOImpl implements UserDAO {
 
     private final SessionFactory sessionFactory;
-
-    public UserDAOImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public User save(User user) {
@@ -73,7 +71,6 @@ public class UserDAOImpl implements UserDAO {
 
         return user;
     }
-
 
     @Override
     public User getUserByUsername(String username) {

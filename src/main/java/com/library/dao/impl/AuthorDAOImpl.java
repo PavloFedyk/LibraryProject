@@ -1,6 +1,6 @@
-package com.library.DAO.Implementation;
+package com.library.dao.impl;
 
-import com.library.DAO.AuthorDAO;
+import com.library.dao.AuthorDAO;
 import com.library.entity.Author;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

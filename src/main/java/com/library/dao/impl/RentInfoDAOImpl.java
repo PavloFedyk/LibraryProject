@@ -1,7 +1,7 @@
-package com.library.DAO.Implementation;
+package com.library.dao.impl;
 import com.library.entity.RentInfo;
 import com.library.entity.RentStatus;
-import com.library.DAO.RentInfoDAO;
+import com.library.dao.RentInfoDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

@@ -1,18 +1,20 @@
-package com.library.service.Implementation;
+package com.library.service.impl;
 
-import com.library.DAO.BookDAO;
+import com.library.dao.BookDAO;
 import com.library.entity.Book;
+import com.library.service.BookService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class BookServiceImpl implements BookDAO {
-    private final BookDAO bookDAO;
+@Service
+@RequiredArgsConstructor
+public class BookServiceImpl implements BookService {
 
-    public BookServiceImpl(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
-    }
+    private final BookDAO bookDAO;
 
     @Override
     public Book save(Book book) {

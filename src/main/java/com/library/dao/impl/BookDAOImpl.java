@@ -1,7 +1,7 @@
-package com.library.DAO.Implementation;
+package com.library.dao.impl;
 
 import com.library.entity.Book;
-import com.library.DAO.BookDAO;
+import com.library.dao.BookDAO;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

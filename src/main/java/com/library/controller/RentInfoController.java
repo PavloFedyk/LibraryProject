@@ -6,6 +6,7 @@ import com.library.entity.User;
 import com.library.service.BookService;
 import com.library.service.RentInfoService;
 import com.library.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/rent-info")
+@RequiredArgsConstructor
 public class RentInfoController {
 
     private final BookService bookService;
@@ -29,12 +31,6 @@ public class RentInfoController {
     private final RentInfoService rentInfoService;
 
     private final UserService userService;
-
-    public RentInfoController(BookService bookService, RentInfoService rentInfoService, UserService userService) {
-        this.bookService = bookService;
-        this.rentInfoService = rentInfoService;
-        this.userService = userService;
-    }
 
     @GetMapping("/request/{id}/{user_id}")
     public String create(@PathVariable Long id, @PathVariable("user_id") Long userId) {

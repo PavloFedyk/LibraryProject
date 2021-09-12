@@ -1,18 +1,20 @@
-package com.library.service.Implementation;
+package com.library.service.impl;
 
-import com.library.DAO.RentInfoDAO;
+import com.library.dao.RentInfoDAO;
 import com.library.entity.RentInfo;
 import com.library.entity.RentStatus;
+import com.library.service.RentInfoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class RentInfoServiceImpl implements RentInfoDAO {
+
+@Service
+@RequiredArgsConstructor
+public class RentInfoServiceImpl implements RentInfoService {
 
     private final RentInfoDAO rentInfoDAO;
-
-    public RentInfoServiceImpl(RentInfoDAO rentInfoDAO) {
-        this.rentInfoDAO = rentInfoDAO;
-    }
 
     @Override
     public RentInfo save(RentInfo rentInfo) {
@@ -33,6 +35,7 @@ public class RentInfoServiceImpl implements RentInfoDAO {
     public List<RentInfo> findByRentStatus(RentStatus rentStatus) {
         return rentInfoDAO.findByRentStatus(rentStatus);
     }
+
 
     @Override
     public RentInfo remove(Long id) {

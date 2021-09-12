@@ -13,8 +13,6 @@ public interface RentInfoService {
 
     List<RentInfo> findByRentStatus(RentStatus rentStatus);
 
-    List<RentInfo> findAll(RentInfo rentInfo);
-
     RentInfo remove(Long id);
 
     List<RentInfo> findByUserId(Long id);
@@ -22,7 +20,6 @@ public interface RentInfoService {
     RentInfo update(RentInfo rentInfo);
 
     void updateDebtors();
-
 
     List<RentInfo> findAll();
 }

@@ -1,5 +1,6 @@
 package com.library.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,9 +36,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/", true)
+                    .loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
                 .logoutUrl("/logout")

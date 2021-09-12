@@ -1,5 +1,6 @@
 package com.library.security;
 
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,16 +9,14 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 public class WebAuthenticationProvider implements AuthenticationProvider {
 
-    private UserDetailsService userService;
-    private PasswordEncoder passwordEncoder;
-
-    public WebAuthenticationProvider(UserDetailsService userService, PasswordEncoder passwordEncoder) {
-        this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private final UserDetailsService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @SneakyThrows
     @Override

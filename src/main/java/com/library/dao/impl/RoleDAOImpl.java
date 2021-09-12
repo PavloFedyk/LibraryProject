@@ -1,8 +1,8 @@
-package com.library.DAO.Implementation;
+package com.library.dao.impl;
 
 
 import com.library.entity.Role;
-import com.library.DAO.RoleDAO;
+import com.library.dao.RoleDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

@@ -1,7 +1,10 @@
 package com.library.controller;
 
 import com.library.entity.Author;
-import com.library.service.AuthorService;
+import com.library.service.author.AuthorDeleterService;
+import com.library.service.author.AuthorRetrieverService;
+import com.library.service.author.AuthorSaverService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,36 +16,35 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/author")
+@RequiredArgsConstructor
 public class AuthorController {
 
-    private final AuthorService authorService;
-
-
-    public AuthorController(AuthorService authorService) {
-        this.authorService = authorService;
-    }
+    private final AuthorRetrieverService authorRetrieverService;
+    private final AuthorDeleterService authorDeleterService;
+    private final AuthorSaverService authorSaverService;
 
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     @GetMapping("/save")
     public String create(Model model) {
         Author author = new Author();
         model.addAttribute("author", author);
-        return "author-form";
+        return "author-list";
     }
 
     @PostMapping("/save")
     public String create(@Validated @ModelAttribute Author author, BindingResult result) {
         if (result.hasErrors()) {
-            return "author-form";
+            return "author-list";
         }
-        authorService.save(author);
+
+        authorSaverService.save(author);
 
         return "redirect:/author";
     }
 
     @GetMapping("/{id}")
     public String read(@PathVariable Long id, Model model) {
-        Author author = authorService.findByIdFetchBooks(id);
+        Author author = authorRetrieverService.findByFetchBooks(id);
 
         model.addAttribute("author", author);
 
@@ -52,7 +54,7 @@ public class AuthorController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
-        authorService.remove(id);
+        authorDeleterService.remove(id);
 
         return "redirect:/author";
     }
@@ -60,7 +62,7 @@ public class AuthorController {
     @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     @GetMapping
     public String getAll(Model model) {
-        List<Author> authors = authorService.findAll();
+        List<Author> authors = authorRetrieverService.findAll();
 
         model.addAttribute("authors", authors);
 

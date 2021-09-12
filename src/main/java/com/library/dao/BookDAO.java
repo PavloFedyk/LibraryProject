@@ -1,4 +1,4 @@
-package com.library.DAO;
+package com.library.dao;
 
 import com.library.entity.Book;
 
