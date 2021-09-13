@@ -1,33 +1,27 @@
-package com.library.service.impl;
+package com.library.service.user;
 
 import com.library.dao.UserDAO;
 import com.library.entity.RentStatus;
 import com.library.entity.User;
-import com.library.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
-
+public class UserRetrieverServiceImpl implements UserRetrieverService {
     private final UserDAO userDAO;
-
-    @Override
-    public User save(User user) {
-        return userDAO.save(user);
-    }
 
     @Override
     public User findById(Long id) {
         return userDAO.findById(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDAO.findAll();
     }
 
     @Override
@@ -37,17 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByName(String username) {
-        return null;
-    }
-
-    @Override
-    public List<User> findAll() {
-        return userDAO.findAll();
-    }
-
-    @Override
-    public User remove(Long id) {
-        return userDAO.remove(id);
+        return userDAO.getUserByUsername(username);
     }
 
     @Override
@@ -78,15 +62,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAllWithExpiredStatus() {
         return userDAO.findAllWithExpiredStatus();
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        try {
-            return userDAO.getUserByUsername(s);
-        } catch (NoResultException e) {
-            throw new UsernameNotFoundException("User not found!");
-        }
-
     }
 }

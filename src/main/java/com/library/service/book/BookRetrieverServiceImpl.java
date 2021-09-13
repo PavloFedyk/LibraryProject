@@ -1,8 +1,7 @@
-package com.library.service.impl;
+package com.library.service.book;
 
 import com.library.dao.BookDAO;
 import com.library.entity.Book;
-import com.library.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,33 +11,23 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class BookServiceImpl implements BookService {
+public class BookRetrieverServiceImpl implements BookRetrieverService{
 
     private final BookDAO bookDAO;
 
     @Override
-    public Book save(Book book) {
-        return bookDAO.save(book);
-    }
-
-    @Override
-    public Book findById(Long id) {
+    public Book findById(final Long id) {
         return bookDAO.findById(id);
     }
 
     @Override
-    public Book findByIdFetchCoAuthors(Long id) {
+    public Book findByIdFetchCoAuthors(final Long id) {
         return bookDAO.findByIdFetchCoAuthors(id);
     }
 
     @Override
     public List<Book> findAll() {
         return bookDAO.findAll();
-    }
-
-    @Override
-    public Book remove(Long id) {
-        return bookDAO.remove(id);
     }
 
     @Override
@@ -53,7 +42,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findMostUnpopularBook(LocalDateTime from, LocalDateTime to) {
-        return findMostUnpopularBook(from,to);
+        return bookDAO.findMostUnpopularBook(from,to);
     }
 
     @Override

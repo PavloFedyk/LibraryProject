@@ -1,19 +1,14 @@
-package com.library.service;
+package com.library.service.rent_info;
 
 import com.library.entity.RentInfo;
 import com.library.entity.RentStatus;
 
 import java.util.List;
 
-public interface RentInfoService {
-
-    RentInfo save(RentInfo rentInfo);
-
+public interface RentInfoRetrieverService {
     RentInfo findById(Long id);
 
     List<RentInfo> findByRentStatus(RentStatus rentStatus);
-
-    RentInfo remove(Long id);
 
     List<RentInfo> findByUserId(Long id);
 
