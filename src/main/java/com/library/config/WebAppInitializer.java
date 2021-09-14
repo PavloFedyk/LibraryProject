@@ -1,5 +1,6 @@
 package com.library.config;
 
+import com.library.Main;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -12,7 +13,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] {WebConfig.class};
+        return new Class[] {Main.class};
     }
 
     @Override

@@ -98,7 +98,7 @@ public class RentInfoDAOImpl implements RentInfoDAO {
         session.createQuery("update RentInfo r set r.rentStatus=:expired " +
                 "where r.requiredReturnDate < current_timestamp " +
                 "and r.returnDate=null " +
-                "and r.rentStatus!=:requested")
+                "and r.rentStatus!=:asked")
                 .setParameter("expired", EXPIRED)
                 .setParameter("asked", ASKED)
                 .executeUpdate();

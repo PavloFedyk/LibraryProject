@@ -28,7 +28,7 @@ public class AuthorController {
     public String create(Model model) {
         Author author = new Author();
         model.addAttribute("author", author);
-        return "author-list";
+        return "author-form";
     }
 
     @PostMapping("/save")

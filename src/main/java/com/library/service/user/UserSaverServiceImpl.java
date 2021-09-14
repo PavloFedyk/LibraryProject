@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserSeverServiceImpl implements UserSeverService{
+public class UserSaverServiceImpl implements UserSaverService {
     private final UserDAO userDAO;
 
     @Override

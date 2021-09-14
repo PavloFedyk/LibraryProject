@@ -30,11 +30,11 @@ public class RentInfo {
 
     @Column(name = "required_return_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime RequiredReturnDate;
+    private LocalDateTime requiredReturnDate;
 
     @Column(name = "return_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime ReturnDate;
+    private LocalDateTime returnDate;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)

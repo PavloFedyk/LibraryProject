@@ -166,6 +166,7 @@ public class BookController {
         return "redirect:/";
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'MANAGER')")
     @GetMapping
     public String getAll(Model model) {
         List<Book> books = bookRetrieverService.findAll();

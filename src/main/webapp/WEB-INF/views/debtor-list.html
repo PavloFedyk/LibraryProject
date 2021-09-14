@@ -8,23 +8,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-
-    <title>Author list</title>
+    <title>Debtor list</title>
 </head>
 <body>
 <div class="container">
-    <h1 th:if="${authors.size() == 0}" th:text="${'No authors found!'}"></h1>
-    <table class="table table-hover" th:if="${authors.size() != 0}">
+    <a th:href="@{/user/debtor/update}" class="link-primary mb-3">Update debtors list</a>
+    <h1>Debtors: </h1>
+    <h1 th:if="${users.size() == 0}">There are no debtors</h1>
+    <table class="table table-hover" th:if="${users.size() != 0}">
         <thead>
         <tr>
             <th>Full name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Creation Date</th>
+            <th>Role</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="author : ${authors}">
-            <td><a th:href="@{|/author/${author.id}|}"
-                   th:text="${author.firstName + ' ' + author.lastName}"></a></td>
-            <td><a th:href="@{|/author/delete/${author.id}|}" th:text="Delete"></a></td>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.firstName + ' ' + user.lastName}"></td>
+            <td><a th:text="${user.username}" th:href="@{|/user/${user.id}|}"></a></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.creationDate}"></td>
+            <td th:text="${user.role.roleType.name()}"></td>
         </tr>
         </tbody>
     </table>

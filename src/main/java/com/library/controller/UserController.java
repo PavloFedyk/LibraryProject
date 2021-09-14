@@ -9,7 +9,7 @@ import com.library.service.rent_info.RentInfoSaverService;
 import com.library.service.role.RoleRetrieverService;
 import com.library.service.user.UserDeleterService;
 import com.library.service.user.UserRetrieverService;
-import com.library.service.user.UserSeverService;
+import com.library.service.user.UserSaverService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -33,7 +33,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
     private final UserRetrieverService userRetrieverService;
-    private final UserSeverService userSeverService;
+    private final UserSaverService userSaverService;
     private final UserDeleterService userDeleterService;
     private final RoleRetrieverService roleRetrieverService;
     private final RentInfoSaverService rentInfoSaverService;
@@ -54,9 +54,9 @@ public class UserController {
         if (result.hasErrors()) return "user-form";
 
         User.setPassword(passwordEncoder.encode(User.getPassword()));
-        User.setRole(roleRetrieverService.findById(1L));
+        User.setRole(roleRetrieverService.findById(2L));
         User.setCreationDate(LocalDateTime.now(ZoneId.of("Europe/Kiev")));
-        userSeverService.save(User);
+        userSaverService.save(User);
         return "redirect:/user/" + User.getId();
     }
 
@@ -111,7 +111,7 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setCreationDate(oldUser.getCreationDate());
         user.setRole(roleRetrieverService.findById(roleId));
-        userSeverService.save(user);
+        userSaverService.save(user);
         return "redirect:/user/";
     }
 
